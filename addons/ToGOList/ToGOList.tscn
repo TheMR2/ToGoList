@@ -47,20 +47,26 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="Save" type="Button" parent="VBoxContainer/Panel" unique_id=1702708270]
-layout_mode = 0
-offset_top = 169.0
-offset_right = 600.0
-offset_bottom = 200.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -31.0
+offset_right = 300.0
+grow_horizontal = 2
+grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 10
 text = "Save"
 
 [node name="Misson" type="LineEdit" parent="." unique_id=1291522086]
-custom_minimum_size = Vector2(0, 53)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 16
 
 [node name="Buttons_Container" type="VBoxContainer" parent="." unique_id=1034618195]
 layout_mode = 2
@@ -69,13 +75,13 @@ alignment = 2
 [node name="Info" type="Button" parent="Buttons_Container" unique_id=1729389666]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 16
 text = "Info"
 
 [node name="Add" type="Button" parent="Buttons_Container" unique_id=37936582]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 16
 text = "Add"
 
 [node name="Window" type="Window" parent="." unique_id=1129679700]
@@ -139,6 +145,7 @@ uri = "https://the-mr.netlify.app/"
 
 [connection signal="value_changed" from="VBoxContainer/ToDoList_Panel_Size" to="." method="_on_h_slider_value_changed"]
 [connection signal="pressed" from="VBoxContainer/Panel/Save" to="." method="_on_save_pressed"]
+[connection signal="editing_toggled" from="Misson" to="." method="_on_misson_editing_toggled"]
 [connection signal="pressed" from="Buttons_Container/Info" to="." method="_on_info_pressed"]
 [connection signal="pressed" from="Buttons_Container/Add" to="." method="_on_add_pressed"]
 [connection signal="close_requested" from="Window" to="." method="_on_window_close_requested"]

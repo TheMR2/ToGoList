@@ -36,17 +36,16 @@ func Add_Mission():
 
 func Clear() -> void:
 	var tween = create_tween()
-	#await get_tree().create_timer(3).timeout
 	var children = $VBoxContainer/Panel/Missions_List_Container/Missions_List.get_children()
 	for child in children:
 		if child.button_pressed == true:
 			tween.tween_property(child,"modulate",Color(1.0, 1.0, 1.0, 0.0),0.3)
 			await tween.finished
 			child.queue_free()
-			#child.queue_free()
-			data.clear()
-			Save()
-			pass
+		else:
+			data.append(child.text)
+	Save()
+	data.clear()
 	pass # Replace with function body.
 
 
@@ -55,19 +54,19 @@ func Clear() -> void:
 
 
 
-
 func Save():
-	var path = FileAccess.open("res://addons/ToGOList/Save_Data/save.json",FileAccess.WRITE)
+	var path = FileAccess.open("user://save.json",FileAccess.WRITE)
 	var json = JSON.stringify(data)
 	path.store_string(json)
 	path.close()
+	print(json)
 	pass
 
 
 
 func Load():
-	if FileAccess.file_exists("res://addons/ToGOList/Save_Data/save.json"):
-		var path = FileAccess.open("res://addons/ToGOList/Save_Data/save.json",FileAccess.READ)
+	if FileAccess.file_exists("user://save.json"):
+		var path = FileAccess.open("user://save.json",FileAccess.READ)
 		var stringfyData = path.get_as_text()
 		path.close()
 		var Data = JSON.parse_string(stringfyData)
@@ -83,7 +82,6 @@ func _on_save_pressed() -> void:
 	var children = $VBoxContainer/Panel/Missions_List_Container/Missions_List.get_children()
 	for child in children:
 		data.append(child.text)
-		pass
 	Save()
 	data.clear()
 	pass # Replace with function body.
@@ -96,4 +94,12 @@ func _on_info_pressed() -> void:
 
 func _on_window_close_requested() -> void:
 	$Window.hide()
+	pass # Replace with function body.
+
+
+func _on_misson_editing_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		if Input.is_action_just_pressed("ui_accept"):
+			Add_Mission()
+			pass
 	pass # Replace with function body.
