@@ -21,7 +21,7 @@ text = "Tasks"
 
 [node name="Panel" type="Panel" parent="VBoxContainer" unique_id=100728948]
 clip_contents = true
-custom_minimum_size = Vector2(600, 100)
+custom_minimum_size = Vector2(599.98, 100)
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -30,14 +30,25 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -31.0
+offset_top = 31.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Missions_List" type="VBoxContainer" parent="VBoxContainer/Panel/Missions_List_Container" unique_id=1158770584]
 layout_mode = 2
 
-[node name="Save" type="Button" parent="VBoxContainer/Panel" unique_id=1702708270]
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer/Panel" unique_id=2014037584]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -24.0
+offset_bottom = -66.0
+grow_horizontal = 2
+grow_vertical = 2
+tabs_rearrange_group = 0
+
+[node name="Clear" type="Button" parent="VBoxContainer/Panel" unique_id=1702708270]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -45,13 +56,90 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -300.0
-offset_top = -31.0
+offset_top = -54.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 10
+text = "Clear"
+
+[node name="Save2" type="Button" parent="VBoxContainer/Panel" unique_id=1885801309]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -54.0
 offset_right = 300.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 10
 text = "Save"
+
+[node name="Add_Tap" type="Button" parent="VBoxContainer/Panel" unique_id=637970867]
+layout_mode = 0
+offset_left = 576.0
+offset_right = 600.0
+offset_bottom = 33.0
+text = "+"
+
+[node name="Task\'s Tab Name" type="Window" parent="VBoxContainer/Panel/Add_Tap" unique_id=776561398]
+oversampling_override = 1.0
+title = "Task's Tab Name"
+position = Vector2i(138, 216)
+size = Vector2i(275, 225)
+visible = false
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/Panel/Add_Tap/Task\'s Tab Name" unique_id=2144457996]
+offset_left = 21.0
+offset_top = 37.0
+offset_right = 251.0
+offset_bottom = 78.0
+placeholder_text = "Task's Tab Name..."
+
+[node name="Task_Name" type="Button" parent="VBoxContainer/Panel/Add_Tap/Task\'s Tab Name" unique_id=1522399964]
+offset_left = 81.0
+offset_top = 125.0
+offset_right = 190.0
+offset_bottom = 178.0
+theme_override_font_sizes/font_size = 32
+disabled = true
+text = "OK"
+
+[node name="Add_Tap2" type="Button" parent="VBoxContainer/Panel" unique_id=1450219953]
+layout_mode = 0
+offset_left = 575.5
+offset_top = 33.0
+offset_right = 599.5
+offset_bottom = 66.0
+text = "-"
+
+[node name="Task\'s Tab Name" type="Window" parent="VBoxContainer/Panel/Add_Tap2" unique_id=958907479]
+oversampling_override = 1.0
+title = "Task's Tab Name"
+position = Vector2i(138, 216)
+size = Vector2i(275, 225)
+visible = false
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/Panel/Add_Tap2/Task\'s Tab Name" unique_id=1970424400]
+offset_left = 21.0
+offset_top = 37.0
+offset_right = 251.0
+offset_bottom = 78.0
+placeholder_text = "Task's Tab Name..."
+
+[node name="Task_Name" type="Button" parent="VBoxContainer/Panel/Add_Tap2/Task\'s Tab Name" unique_id=227361433]
+offset_left = 81.0
+offset_top = 125.0
+offset_right = 190.0
+offset_bottom = 178.0
+theme_override_font_sizes/font_size = 32
+disabled = true
+text = "OK"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=484349425]
 custom_minimum_size = Vector2(444.285, 0)
@@ -80,6 +168,7 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 16
+disabled = true
 text = "Add"
 
 [node name="Window" type="Window" parent="." unique_id=1129679700]
@@ -146,7 +235,15 @@ theme_override_font_sizes/font_size = 64
 text = "The_MR"
 uri = "https://the-mr.netlify.app/"
 
-[connection signal="pressed" from="VBoxContainer/Panel/Save" to="." method="_on_save_pressed"]
+[connection signal="tab_selected" from="VBoxContainer/Panel/TabContainer" to="." method="_on_tab_container_tab_selected"]
+[connection signal="pressed" from="VBoxContainer/Panel/Clear" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="VBoxContainer/Panel/Save2" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="VBoxContainer/Panel/Add_Tap" to="." method="_on_add_tap_pressed"]
+[connection signal="text_changed" from="VBoxContainer/Panel/Add_Tap/Task\'s Tab Name/TextEdit" to="." method="_on_text_edit_text_changed"]
+[connection signal="pressed" from="VBoxContainer/Panel/Add_Tap/Task\'s Tab Name/Task_Name" to="." method="_on_task_name_pressed"]
+[connection signal="pressed" from="VBoxContainer/Panel/Add_Tap2" to="." method="_on_add_tap_pressed"]
+[connection signal="text_changed" from="VBoxContainer/Panel/Add_Tap2/Task\'s Tab Name/TextEdit" to="." method="_on_text_edit_text_changed"]
+[connection signal="pressed" from="VBoxContainer/Panel/Add_Tap2/Task\'s Tab Name/Task_Name" to="." method="_on_task_name_pressed"]
 [connection signal="editing_toggled" from="VBoxContainer2/Task" to="." method="_on_misson_editing_toggled"]
 [connection signal="pressed" from="Buttons_Container/Info" to="." method="_on_info_pressed"]
 [connection signal="pressed" from="Buttons_Container/Add" to="." method="_on_add_pressed"]

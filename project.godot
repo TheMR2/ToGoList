@@ -10,15 +10,13 @@ config_version=5
 
 [application]
 
-config/name="ToGOList"
+config/name="ToGoDot"
 config/tags=PackedStringArray("godot_plugins")
 config/features=PackedStringArray("4.6", "GL Compatibility")
+config/icon="uid://ddkkok2kn3tew"
 
 [display]
 
-window/size/mode=1
-window/size/borderless=true
-window/size/always_on_top=true
 window/stretch/mode="canvas_items"
 
 [editor_plugins]
